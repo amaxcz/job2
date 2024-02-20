@@ -1,3 +1,4 @@
+import os
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from .models import Base, Estate
@@ -12,8 +13,8 @@ class SrealityPipeline:
     @classmethod
     def from_crawler(cls, crawler):
         settings = crawler.settings
-        database_url = settings.get('DATABASE_URL')
-        return cls(database_url)
+        DATABASE_URL = os.getenv("DATABASE_URL")
+        return cls(DATABASE_URL)
 
     def process_item(self, item, spider):
         session = self.Session()

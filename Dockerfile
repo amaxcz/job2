@@ -3,7 +3,6 @@ FROM python:3.11-slim
 
 # Set environment variables for Python
 ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
 
 # Set the working directory to /app
 WORKDIR /app
@@ -24,6 +23,9 @@ COPY ./docker-entrypoint.sh /app/docker-entrypoint.sh
 
 # Grant execute permissions to the script
 RUN chmod +x /app/docker-entrypoint.sh
+
+# Configure database URL
+ENV DATABASE_URL='postgresql://demo1_user:demo1_pass@127.0.0.1:5432/demo1_db'
 
 # Run the initialization script and start postgresql + uvicorn
 CMD ["/app/docker-entrypoint.sh"]

@@ -35,7 +35,7 @@ ROBOTSTXT_OBEY = False
 #COOKIES_ENABLED = False
 
 # Disable Telnet Console (enabled by default)
-#TELNETCONSOLE_ENABLED = False
+TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
 #DEFAULT_REQUEST_HEADERS = {
@@ -90,10 +90,7 @@ ITEM_PIPELINES = {
 
 # Set settings whose default value is deprecated to a future-proof value
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
-# TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
-TWISTED_REACTOR = "twisted.internet.epollreactor.EPollReactor"
+TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
+#TWISTED_REACTOR = "twisted.internet.epollreactor.EPollReactor"
 
 FEED_EXPORT_ENCODING = "utf-8"
-
-# PostgreSQL database
-DATABASE_URL = 'postgresql://demo1_user:demo1_pass@127.0.0.1:5432/demo1_db'

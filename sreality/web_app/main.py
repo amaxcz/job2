@@ -1,3 +1,4 @@
+import os
 import subprocess
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import HTMLResponse
@@ -9,7 +10,7 @@ from sreality.models import Estate
 app = FastAPI()
 templates = Jinja2Templates(directory="web_app/templates")
 
-DATABASE_URL = "postgresql://demo1_user:demo1_pass@localhost/demo1_db"
+DATABASE_URL = os.getenv("DATABASE_URL")
 engine = create_engine(DATABASE_URL, pool_size=20)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
