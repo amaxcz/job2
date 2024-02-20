@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estates</title>
+    <link rel="stylesheet" href="https://unpkg.com/htmx.org@1.9.10/dist/htmx.min.css">
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .buttons {
+            margin-bottom: 20px;
+        }
+
+        .card {
+            /* border: 1px solid #ccc; */
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-right: 10px;
+        }
+
+        .card p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Estates List</h1>
+        
+        <div class="buttons">
+            <button hx-post="/crawl" hx-trigger="click" hx-target="#result" hx-swap="outerHTML" hx-on:htmx:after-request="window.location.href = '/'">Crawl</button>
+            <button hx-post="/clear" hx-trigger="click" hx-target="#result" hx-swap="outerHTML" hx-on:htmx:after-request="window.location.href = '/'">Clear</button>
+            <button hx-on:click="window.location.href='/'">Refresh</button>
+        </div>
+
+        <div id="result"></div>
+
+        {% for estate in estates_data %}
+            <div class="card">
+                <a href="https://www.sreality.cz/detail/0/0/0/0/{{ estate.hash_id }}" target="_blank">
+                    <img src="{{ estate.image_url }}" alt="{{ estate.hash_id }}">
+                </a>
+                <div>
+                    <p>Title: {{ estate.title }}</p>
+                    <p>Price: {{ estate.price }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script src="https://unpkg.com/htmx.org@1.9.10/dist/htmx.min.js"></script>
+</body>
+</html>

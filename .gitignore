@@ -1,0 +1,23 @@
+# Compiled Python bytecode
+*.pyc
+__pycache__/
+
+# Log files
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+# Temproary files
+*.tmp
+*.swp
+*.bak
+*~
+
+# Virtual evnvironment
+.venv/
